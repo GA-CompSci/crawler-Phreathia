@@ -1,8 +1,11 @@
+package main;
 import java.util.Scanner;
 
 import monsters.Monster;
 
 public class Runner {
+
+    private static int level = 1;
 
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
@@ -15,7 +18,6 @@ public class Runner {
 
     public static void main(String[] args){
         // set up key variables
-        int level = 1;
         boolean gameOver = false;
         Scanner input = new Scanner(System.in);
         
@@ -72,14 +74,21 @@ public class Runner {
 
     }
 
-    public static Monster generateMonster (int level) {
+    public static Monster generateMonster () {
         return null;
     }
 
     public static void printMenu() {
+        // pause for 1 second
+        pause(2000);
+        try {
+            new ProcessBuilder("clear").inheritIO().start().waitFor();
+        } catch (Exception e) {
+            System.out.println("Error clearing console.");
+        }
         // Dungeon-themed menu art
         System.out.println(PURPLE + "*************************************************" + RESET);
-        System.out.println(RED + "*                Choose your path:              *" + RESET);
+        System.out.println(RED + "*                LEVEL " + level + ":             *" + RESET);
         System.out.println(PURPLE + "*************************************************" + RESET);
 
         // Q is for quit
@@ -94,8 +103,18 @@ public class Runner {
         System.out.println(PURPLE + "*************************************************" + RESET);
     
         // Extra dungeon atmosphere
-        System.out.println(YELLOW + "You hear distant growls... Choose wisely.\n" + RESET);
+        System.out.println(YELLOW + "Your health is " + Player.health + ". You hear distant growls... Choose wisely\n" + RESET);
         System.out.print("\nSELECTION: ");
+    }
+
+    // Helper method to pause without forcing InterruptedException
+    private static void pause(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            // Handle the interruption silently
+            Thread.currentThread().interrupt(); // Reset the interrupt flag in case it's needed elsewhere
+        }
     }
 
 }

@@ -10,7 +10,7 @@ public abstract class Monster {
 
     // blank constructor
     public Monster() {
-        health = 100;
+        this.health = 100;
         levelModifier = 1;
         minDamage = 1;
         maxDamage = 10;
@@ -21,8 +21,8 @@ public abstract class Monster {
     public Monster(int h, int l, int min, int max, String n) {
         health = h;
         this.levelModifier = l;
-        this.minDamage = min;
-        this.maxDamage = max;
+        this.minDamage = 1;
+        this.maxDamage = 10;
         this.name = n;
     }
 
@@ -43,4 +43,13 @@ public abstract class Monster {
     public int getDamage() {
         return (int) (Math.random() * (maxDamage - minDamage) + minDamage);
     }
+
+    public boolean isDead() {
+        return health <= 0;
+    }
+
+    // abstract promises
+    // if you're going to be a Monster, you must have these methods
+    public abstract void attack();
+    public abstract void taunt();
 }

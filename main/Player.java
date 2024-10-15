@@ -1,7 +1,15 @@
+package main;
 public class Player {
     // static variables
     public static int health = 100;
 
+    public static void takeDamage(int damage) {
+        // subtract the method from the player's health
+        health -= damage;
+
+        // print the damage and the player's new health
+        System.out.println("You took " + damage + " points of damage.");
+    }
 
     // heal method
     public static void heal(int currentLevel) {
@@ -16,6 +24,6 @@ public class Player {
         else heal = 0;
 
         // print the heal value and the player's new health
-        System.out.println("You healed for " + heal + "points.");
+        System.out.println("You healed for " + heal + " points.");
     }
 }
