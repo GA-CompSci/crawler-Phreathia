@@ -55,7 +55,6 @@ public class Runner {
             String choice = input.nextLine();
 
             // if there isn't already a monster, generate one
-            Monster m = generateMonster();
 
             // Does monster get an early attack?
             if(m.isFastAttack()) {
@@ -97,7 +96,7 @@ public class Runner {
         int health = 10 + level;
         // list constructors of available monsters so we can randomly build just one
         Monster[] constructors = new Monster[] {
-            new Zombie(health, level, minHit, maxHit);
+            new Zombie(health, level, minHit, maxHit)
         }
     }
 

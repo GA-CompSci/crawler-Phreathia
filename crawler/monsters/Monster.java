@@ -1,7 +1,7 @@
 package crawler.monsters;
 
 public abstract class Monster {
-    // encapsulated variables
+    // encasulated variables
     private int health;
     private int levelModifier;
     private int minDamage;
@@ -9,9 +9,10 @@ public abstract class Monster {
     private String name;
     private boolean fastAttack;
 
+
+
     // blank constructor
     public Monster() {
-        // encapsulated variables
         this.health = 100;
         levelModifier = 1;
         minDamage = 1;
@@ -30,16 +31,31 @@ public abstract class Monster {
         this.fastAttack = fastAttack;
     }
 
-    // health modifier
+    // ----------------------
+    // MUTATORS
+    // ----------------------
+
     public void setHealth(int health){
         this.health = health;
     }
 
-    // accessors
+    // ----------------------
+    // ACCESSORS
+    // ----------------------
+    public String status() {
+        // Zombie (lvl 1) - 100 hp
+        return name + " (lvl " + levelModifier + ") - " + health + " hp";
+    }
+
     public int getHealth() {
         return health;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    // boolean accessors should be named with "is" instead of "get"
     public boolean isFastAttack() {
         return fastAttack;
     }
@@ -49,14 +65,18 @@ public abstract class Monster {
     }
 
     public int getDamage() {
-        return (int) (Math.random() * (maxDamage - minDamage) + minDamage);
+        int x = (int) (Math.random() * (maxDamage - minDamage) + minDamage);
+        return x;
     }
 
     public boolean isDead() {
         return health <= 0;
     }
+    
 
-    // abstract promises
+    // ----------------------
+    // ABSTRACT METHODS
+    // ----------------------
     // if you're going to be a Monster, you must have these methods
     public abstract void attack();
     public abstract void taunt();
